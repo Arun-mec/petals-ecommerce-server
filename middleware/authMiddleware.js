@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 
 // Protected routes - only user can access it
 const protect = asyncHandler(async (req, res, next) => {
-    let token;
 
+    let token;
     token = req.cookies.jwt;
 
     if (token) {

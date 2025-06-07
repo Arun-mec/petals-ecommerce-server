@@ -10,12 +10,12 @@ const app = express();
 connectdb();
 
 // Middlewares for body parsing
-app.use(express.json());
-app.use(express.urlencoded({extended:true}))
 app.use(cors({
     origin: 'http://localhost:5173', // your frontend
     credentials: true
 }));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 
 // Middleware for cookie parsing
 app.use(cookieParser());
@@ -29,6 +29,10 @@ app.use('/api/users', require("./routes/usersRoute"));
 app.use('/api/products', require("./routes/productsRoute"));
 
 app.use('/api/orders', require("./routes/orderRoute"));
+
+app.get('/api/config/paypal', (req, res) => {
+    res.send({clientId : process.env.PAYPAL_CLIENT_ID });
+})
 
 app.use(errorHandler);
 app.use(notFound);

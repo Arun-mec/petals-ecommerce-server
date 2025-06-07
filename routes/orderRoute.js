@@ -13,10 +13,10 @@ const {
 
 const { protect, admin } = require("../middleware/authMiddleware");
 
-router.route('/').post(protect, addOrderItems).get(protect, admin, getAllOrders)
+router.route('/').post(protect, addOrderItems).get(protect, admin, getAllOrders);
 router.route('/myorders').get(protect, getUserOrders);
-router.route('/:id').get(protect, admin, getOrderById);
+router.route('/:id').get(protect, getOrderById);
 router.route('/:id/delivered').put(protect, updateOrderToDelivered)
-router.route('/:id/payment').put(protect, admin, updateOrderToPaid)
+router.route('/:id/payment').put(protect, updateOrderToPaid)
 
 module.exports = router;

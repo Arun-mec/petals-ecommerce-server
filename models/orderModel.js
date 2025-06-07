@@ -40,8 +40,7 @@ const orderSchema = new mongoose.Schema({
         number : { type : Number, required : true},
     },
     paymentMethod : {
-        type : String,
-        required : true,
+        type : String
     },
     taxPrice : {
         type : Number,
@@ -53,12 +52,6 @@ const orderSchema = new mongoose.Schema({
         default : 0.00,
         required : true
     },
-    // paymentStatus : {
-    //     id : { type : String, required : true},
-    //     status : { type : String, required : true},
-    //     updateTime :{ type : String, required : true},
-    //     emailAddress : { type : String, required : true},
-    // },
     shippingPrice : {
         type : Number,
         default : 0.00,
@@ -69,13 +62,24 @@ const orderSchema = new mongoose.Schema({
         default : 0.00,
         required: true
     },
-    deliveryStatus : {
+    isDelivered : {
         type : Boolean,
         default : false,
         required: true
     },
+    isPaid : {
+        type : Boolean,
+        default : false,
+        required : true
+    },
     paidAt : {
-        type : Date
+        type : Date 
+    },
+    paymentStatus : {
+        id : { type : String,},
+        status : { type : String, default :false},
+        updateTime :{ type : String},
+        emailAddress : { type : String},
     },
     deliveredAt : {
         type : Date

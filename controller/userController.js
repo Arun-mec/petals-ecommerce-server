@@ -124,7 +124,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             email: updatedUser.email,
             isAdmin: updatedUser.isAdmin,
             isActive: updatedUser.isActive,
-            number : updateUser.number
+            number : updatedUser.number
         })
     }
     else {

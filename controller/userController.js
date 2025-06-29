@@ -228,21 +228,39 @@ const forgotPassword = asyncHandler(async (req, res) => {
 // @route GET /api/users
 // @access Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-    res.send("Get users")
+    const users = User.find({});
+    if (users) {
+        res.json(users);
+    }
+    else {
+        res.status(401);
+        throw new Error("Users not found!");
+    }
 })
 
 // @desc Get user by id
 // @route GET /api/users/:id
 // @access Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
-    res.send("Get user by Id")
+    const userId = req.params.id;
+    const user = User.findById(userId);
+
+    if (user) {
+        res.json(user);
+    }
+    else {
+        res.status(401);
+        throw new Error("User is not found!");
+    }
 })
 
 // @desc Delete user
 // @route DELETE /api/users/:id
 // @access Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
-    res.send("Delete user")
+    const userId = req.params.id;
+
+    
 })
 
 // @desc Update user by admin

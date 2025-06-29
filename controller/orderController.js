@@ -95,7 +95,20 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @access Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
     const orderId = req.params.id;
-    const order = Order.findById(orderId)
+    const order = await Order.findById(orderId);
+
+    if (order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+
+        const updatedOrder = await order.save();
+
+        res.status(200).json(updatedOrder);
+    }
+    else {
+        res.status(404);
+        throw new Error("Order not found!");
+    }
 });
 
 // @desc Get lall orders

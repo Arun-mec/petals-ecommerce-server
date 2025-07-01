@@ -75,6 +75,10 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    reviews : {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Review',
+    },
     brandDetails: {
         name: {
             type: String,

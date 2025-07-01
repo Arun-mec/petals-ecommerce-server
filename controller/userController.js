@@ -8,9 +8,7 @@ const generateToken = require('../utils/generateToken');
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password)
     const user = await User.findOne({ email })
-    console.log(user);
 
     if (user && (await user.matchPassword(password))) {
 
